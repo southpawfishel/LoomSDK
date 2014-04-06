@@ -100,6 +100,8 @@ set (ENGINE_SRC
 
     sound/lsSound.cpp
     sound/lsSoundPackage.cpp
+
+    math2d/lsMath2D.cpp
 )
 
 if (APPLE)

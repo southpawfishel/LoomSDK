@@ -35,6 +35,7 @@ void installLoom2D();
 void installPackageLoomSound();
 void installLoomFacebook();
 void installLoomTeak();
+void installPackageMath2D();
 
 void installPackageLoom()
 {
@@ -58,4 +59,6 @@ void installPackageLoom()
 
     installLoomGraphics();
     installLoom2D();
+    
+    installPackageMath2D();
 }
