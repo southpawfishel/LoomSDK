@@ -26,6 +26,7 @@ namespace lsMath2D
         float getY2() const { return _y2; }
         float getDX() const { return _dx; }
         float getDY() const { return _dy; }
+        float getAngle() const { return _angle; }
 
     private:
         float _x1;
@@ -34,6 +35,7 @@ namespace lsMath2D
         float _y2;
         float _dx;
         float _dy;
+        float _angle;
         
         void _updateDirection();
     };

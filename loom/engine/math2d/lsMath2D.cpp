@@ -19,6 +19,7 @@ LineSegment::LineSegment()
 , _y2(0.0f)
 , _dx(0.0f)
 , _dy(0.0f)
+, _angle(0.0f)
 {
 }
     
@@ -29,6 +30,7 @@ LineSegment::LineSegment(const float& x1, const float& y1, const float& x2, cons
 , _y2(y2)
 , _dx(0.0f)
 , _dy(0.0f)
+, _angle(0.0f)
 {
     _updateDirection();
 }
@@ -40,6 +42,7 @@ LineSegment::LineSegment(const LineSegment& original)
 , _y2(original._y2)
 , _dx(original._dx)
 , _dy(original._dy)
+, _angle(original._angle)
 {
 }
     
@@ -62,12 +65,14 @@ void LineSegment::rotateBy(const float thetaRadians)
     Math2D::rotateVector(_dx, _dy, thetaRadians);
     _x2 = _x1 + _dx;
     _y2 = _y1 + _dy;
+    _angle = atan2(_dy, _dx);
 }
 
 void LineSegment::_updateDirection()
 {
     _dx = _x2 - _x1;
     _dy = _y2 - _y1;
+    _angle = atan2(_dy, _dx);
 }
 
 float Math2D::dotProduct(const float& x1, const float& y1, const float& x2, const float& y2)
@@ -162,6 +167,7 @@ static int registerLoomMath2D(lua_State *L)
         .addVarAccessor("y2", &LineSegment::getY2)
         .addVarAccessor("dx", &LineSegment::getDX)
         .addVarAccessor("dy", &LineSegment::getDY)
+        .addVarAccessor("angle", &LineSegment::getAngle)
         .endClass()
 
         .beginClass<RaycastResult>("RaycastResult")

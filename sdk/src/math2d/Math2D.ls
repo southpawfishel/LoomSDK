@@ -11,6 +11,7 @@ package math2d
         public native var y2:Number;
         public native var dx:Number;
         public native var dy:Number;
+        public native var angle:Number;
 
         public native function LineSegment(newX1:Number=0, newY1:Number=0, newX2:Number=0, newY2:Number=0);
 
