@@ -106,11 +106,11 @@ float Math2D::intersectRayWithSegment(const LineSegment& ray, const LineSegment&
 
 int Math2D::raycastToSegments(lua_State* L)
 {
-	float tempT = -1.0f;
+    float tempT = -1.0f;
 
-	const int RAY_STACK_POS = 1;
-	const int OUTSTRUCT_STACK_POS = 2;
-	const int VECTOR_STACK_POS = 3;
+    const int RAY_STACK_POS = 1;
+    const int OUTSTRUCT_STACK_POS = 2;
+    const int VECTOR_STACK_POS = 3;
 
     LineSegment* ray = (LineSegment*)lualoom_getnativepointer(L, RAY_STACK_POS);
     RaycastResult* result = (RaycastResult*)lualoom_getnativepointer(L, OUTSTRUCT_STACK_POS);
@@ -129,15 +129,15 @@ int Math2D::raycastToSegments(lua_State* L)
         for (int i = 0; i < numSegments; ++i)
         {
             lua_rawgeti(L, VECTOR_STACK_POS+1, i);
-		    LineSegment* seg = (LineSegment*)lualoom_getnativepointer(L, -1);
+            LineSegment* seg = (LineSegment*)lualoom_getnativepointer(L, -1);
 
-		    tempT = intersectRayWithSegment(*ray, *seg);
-		    if (tempT != -1.0f && tempT < result->t)
-		    {
-		    	result->hit = true;
-		    	result->hitIndex = i;
-		    	result->t = tempT;
-		    }
+            tempT = intersectRayWithSegment(*ray, *seg);
+            if (tempT != -1.0f && tempT < result->t)
+            {
+                result->hit = true;
+                result->hitIndex = i;
+                result->t = tempT;
+            }
 
             lua_pop(L, 1);
         }
@@ -145,8 +145,8 @@ int Math2D::raycastToSegments(lua_State* L)
 
     if (result->hit)
     {
-	    result->setHitX(ray->getX1() + (ray->getDX() * result->t));
-	    result->setHitY(ray->getY1() + (ray->getDY() * result->t));
+        result->setHitX(ray->getX1() + (ray->getDX() * result->t));
+        result->setHitY(ray->getY1() + (ray->getDY() * result->t));
     }
 
     return 0;
